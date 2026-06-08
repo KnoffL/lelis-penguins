@@ -23,3 +23,45 @@ Exploratory/causal: Does a larger bill lead to higher weight? However, due to th
 Context and target audience:
 
 This research is for penguin enthusiasts for scientific journalism. A great presentation form would be a document with a lot of colorful figures.
+
+**Initial data analysis:**
+
+Glimpse output:
+
+```         
+Rows: 344
+
+Columns: 17
+
+$ studyName <chr> "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", … $ Sample Number <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, … $ Species <chr> "Adelie Penguin (Pygoscelis adeliae)", "Adelie Penguin … $ Region <chr> "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anve… $ Island <chr> "Torgersen", "Torgersen", "Torgersen", "Torgersen", "To… $ Stage <chr> "Adult, 1 Egg Stage", "Adult, 1 Egg Stage", "Adult, 1 E… $ Individual ID <chr> "N1A1", "N1A2", "N2A1", "N2A2", "N3A1", "N3A2", "N4A1",… $ Clutch Completion <chr> "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "No", "… $ Date Egg <date> 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 2007-1… $ Culmen Length (mm) <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.… $ Culmen Depth (mm) <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.… $ Flipper Length (mm) <dbl> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 1… $ Body Mass (g) <dbl> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 425… $ Sex <chr> "MALE", "FEMALE", "FEMALE", NA, "FEMALE", "MALE", "FEMA… $ Delta 15 N (o/oo) <dbl> NA, 8.94956, 8.36821, NA, 8.76651, 8.66496, 9.18718, 9.… $ Delta 13 C (o/oo) <dbl> NA, -24.69454, -25.33302, NA, -25.32426, -25.29805, -25… $ Comments <chr> "Not enough blood for isotopes.", NA, NA, "Adult not sa…
+```
+
+Summary of Body Mass:
+
+| Min  | 1st Qu | Median | Mean | 3rd Qu. | Max. | NA's |
+|------|--------|--------|------|---------|------|------|
+| 2700 | 3550   | 4050   | 4202 | 4750    | 6300 | 2    |
+
+Summary of Flipper Length:
+
+| Min   | 1st Qu | Median | Mean  | 3rd Qu. | Max.  | NA's |
+|-------|--------|--------|-------|---------|-------|------|
+| 172.0 | 190.0  | 197.0  | 200.9 | 213.0   | 231.0 | 2    |
+
+Summary of Bill/Culmen Depth:
+
+| Min   | 1st Qu | Median | Mean  | 3rd Qu. | Max.  | NA's |
+|-------|--------|--------|-------|---------|-------|------|
+| 13.10 | 15.60  | 17.30  | 17.15 | 18.70   | 21.50 | 2    |
+
+![Histogram of Bill depth](images/Bildschirmfoto 2026-06-06 um 01.49.07.png){width="561"}
+
+![Relationship between Bill depth and weight](images/Bildschirmfoto 2026-06-06 um 01.50.34.png){width="559"}
+
+Quality issues:
+
+-not all variable are filled out for every observation, but with pretty high complete rates
+
+-no other issues
+
+Solution: Filtering out the observation with missing values for the analysis
