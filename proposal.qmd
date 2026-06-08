@@ -92,11 +92,11 @@ Uncertainties: Will there be enough data for adequate power?
 
 Variables: Bill depth (mm), Body mass (g)
 
-Analytical approach: regression analysis, maybe adding other variables to check for confounders
+Analytical approach: regression analysis, adding other variables to check for confounders, the graphics definitely show that Species would Species would change the correlation, maybe we will take a look at the interference of sex
 
 Cleaning / transformation steps needed: Excluding NAs (first check whether NAs are occuring more often in penguins with certain attributes)
 
-Uncertainties / Problem: Will there be enough data for adequate power? No real way of showing causality as there may be confounding factors outside the data set
+Uncertainties / Problem: Will there be enough data for adequate power? No real way of showing causality as there may be confounding factors outside the data set. Interfering variables like Species would lead to the Simpson'a paradox.
 
 Workflow organization:
 
@@ -104,6 +104,8 @@ Code style: tidyverse, enforced with styler linter (not included in the project 
 
 Packages: number of packages should be kept at a minimum to avoid conflicts between packages but every collaborator can use new packages at their own may.
 
-Git workflow: people should work on individual branches to reduce conflicts wherever it is practical. Exceptions can be made after getting permission from the branch creator
+Planned packages: "palmerpenguins", "tidyverse", maybe "patchwork" for compact visualization, maybe "narniar" to visually check whether all NAs have been removes
+
+Git workflow: people should work on individual branches to reduce conflicts wherever it is practical. Exceptions can be made after getting permission from the branch creator; continue the common practice to let the partner confirm the pull request
 
 Gitignore: Artefacts from running code will be added to a gitignore file, though it is unclear at this stage what exactly we will include as we do not know the entire requirements of our project just yet
