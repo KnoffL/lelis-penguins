@@ -54,9 +54,9 @@ Summary of Bill/Culmen Depth:
 |-------|--------|--------|-------|---------|-------|------|
 | 13.10 | 15.60  | 17.30  | 17.15 | 18.70   | 21.50 | 2    |
 
-![Histogram of Bill depth](images/Bildschirmfoto 2026-06-06 um 01.49.07.png){width="561"}
+![Histogram of Bill depth](images/Bildschirmfoto%202026-06-06%20um%2001.49.07.png){width="561"}
 
-![Relationship between Bill depth and weight](images/Bildschirmfoto 2026-06-06 um 01.50.34.png){width="559"}
+![Relationship between Bill depth and weight](images/Bildschirmfoto%202026-06-06%20um%2001.50.34.png){width="559"}
 
 Quality issues:
 
@@ -65,3 +65,17 @@ Quality issues:
 -no other issues
 
 Solution: Filtering out the observation with missing values for the analysis
+
+Analysis plan:
+
+1\. What‘s the average weight of penguins on different islands?
+
+Variables: Body mass (g), Island
+
+2\. Are there differences in flipper length between female and male penguins?
+
+Variables: Flipper length (mm), Sex
+
+3\. Does a larger bill lead to higher weight?
+
+Variables: Bill depth (mm), Body mass (g)
