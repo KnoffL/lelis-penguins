@@ -3,6 +3,7 @@
 library(readr)
 library(tidyverse)
 library(visdat)
+library(tidyr)
 
 rki_data <- read_tsv("GBE_Indikatoren_nichtuebertragbarer_Erkrankungen.tsv")
 View(rki_data)
@@ -45,9 +46,18 @@ rki_data <- rki_data %>%
   mutate(Region_ID = as.numeric(Region_ID)) %>%
   filter(!is.na(Region_ID))
 
-# Visualise column types
-vis_dat(rki_data, warn_large_data = FALSE)
-
 # Zeitraum ISO contains both start and end date and is therefore read as string
 # For time series, it may be more suited to have the start and end date as two
 # seperate columns that are read as Dates
+rki_data <- rki_data %>%
+  separate(
+    Zeitraum_ISO,
+    into = c("Start_Beobachtungszeitraum", "Ende_Beobachtungszeitraum"),
+    sep = "--"
+  ) %>%
+  mutate(Start_Beobachtungszeitraum = as.Date(Start_Beobachtungszeitraum)) %>%
+  mutate(Ende_Beobachtungszeitraum = as.Date(Ende_Beobachtungszeitraum))
+
+# Visualise column types
+vis_dat(rki_data, warn_large_data = FALSE)
+# The conversion did not create NAs
