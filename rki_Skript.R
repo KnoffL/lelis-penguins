@@ -2,6 +2,7 @@
 
 library(readr)
 library(tidyverse)
+library(visdat)
 
 rki_data <- read_tsv("GBE_Indikatoren_nichtuebertragbarer_Erkrankungen.tsv")
 View(rki_data)
@@ -19,3 +20,11 @@ rki_data %>%
 rki_data %>%
   filter(!is.na(Fälle)) %>%
   nrow()
+
+# Visualise column types
+vis_dat(data, warn_large_data = FALSE)
+
+# Region ID is read as character, but is number
+# Zeitraum ISO contains both start and end date and is therefore read as string
+# For time series, it may be more suited to have the start and end date as two
+# seperate columns that are read as Dates
