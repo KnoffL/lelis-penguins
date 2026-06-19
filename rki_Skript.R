@@ -22,7 +22,7 @@ rki_data %>%
   nrow()
 
 # Visualise column types
-vis_dat(data, warn_large_data = FALSE)
+vis_dat(rki_data, warn_large_data = FALSE)
 
 # Region ID is read as character, but is number
 # Zeitraum ISO contains both start and end date and is therefore read as string
