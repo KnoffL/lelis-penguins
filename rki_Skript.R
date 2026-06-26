@@ -61,3 +61,14 @@ rki_data <- rki_data %>%
 # Visualise column types
 vis_dat(rki_data, warn_large_data = FALSE)
 # The conversion did not create NAs
+
+# Convert from dbl to int where reasonable
+rki_data <- rki_data %>%
+  mutate(Geschlecht_ID = as.integer(Geschlecht_ID)) %>%
+  mutate(Kennzahl_ID = as.integer(Kennzahl_ID)) %>%
+  mutate(Bildung_Casmin_ID = as.integer(Bildung_Casmin_ID)) %>%
+  mutate(GISD_ID = as.integer(GISD_ID)) %>%
+  mutate(Standardisierung_ID = as.integer(Standardisierung_ID)) %>%
+  mutate(Unsicherheit = as.integer(Unsicherheit)) %>%
+  mutate(Region_ID = as.integer(Region_ID)) %>%
+  mutate(Berufliche_Qualifikation_ID = as.integer(Berufliche_Qualifikation_ID))
