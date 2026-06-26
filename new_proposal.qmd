@@ -67,7 +67,7 @@ unique(rki_data$Zeitraum_Name)
 
 \- many variables are double although integer would be sufficient ADDRESSED in rki_Skript
 
--there is no variable uniquely identifing each row/observation
+-there is no variable uniquely identifing each row/observation ADDRESSED in rki_Skript
 
 -some variables have more missing values then existing values (e.g. Fälle, Unteres_Konfidenzintervall)
 

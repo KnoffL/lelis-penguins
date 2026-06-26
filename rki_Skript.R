@@ -72,3 +72,7 @@ rki_data <- rki_data %>%
   mutate(Unsicherheit = as.integer(Unsicherheit)) %>%
   mutate(Region_ID = as.integer(Region_ID)) %>%
   mutate(Berufliche_Qualifikation_ID = as.integer(Berufliche_Qualifikation_ID))
+
+# Add unique identifier per row
+rki_data <- rki_data %>%
+  mutate(ID = row_number())
