@@ -65,7 +65,7 @@ Quality issues:
 unique(rki_data$Zeitraum_Name)
 ```
 
-\- many variables are double although integer would be sufficient
+\- many variables are double although integer would be sufficient ADDRESSED in rki_Skript
 
 -there is no variable uniquely identifing each row/observation
 
