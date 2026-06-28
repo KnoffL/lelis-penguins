@@ -98,10 +98,14 @@ bildung_symptom <- rki_data %>%
 
 #function to calculate weighted average
 weighted_average <- function(value, sample_size){
+  if(length(value) != length(sample_size)){
+    stop("The two input parameters don't have the same length")
+  }
   s <- sum(sample_size)
   result <- 0
   for(x in 1:length(value)){
-    result <- result + value[x] * sample_size / s
+    result <- result + value[x] * sample_size[x] / s
   }
   return(result)
 }
+#function was corrected tested on examplary vectors and stress tested
