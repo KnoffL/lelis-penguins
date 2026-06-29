@@ -183,6 +183,10 @@ Unsicherheit is fairly small for most rows but should be checked for relevant in
 
 Plots:
 
+This image shows that the premise of the second research question holds true: depressive symptoms do differ among different education levels in Germany
+
+![](proposal_graphic1.png){width="510"}
+
 Quality issues:
 
 -one variable has the wrong data type (Zeitraum_Name) RESOLVED: By creating Start_Beobachtungszeitraum and Ende_Beobachtungszeitraum from Zeitraum_ISO we got the information we need and it is often times more precise than in Zeitraum_Name. Converting Zeitraum_Name to date would result in some form of data loss as it is in varying formats (e.g. 2024/25, 2009).

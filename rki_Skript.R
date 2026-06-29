@@ -65,6 +65,14 @@ rki_data <- rki_data %>%
 vis_dat(rki_data, warn_large_data = FALSE)
 # The conversion did not create NAs
 
+#when the variable Zetraum_Name ist converted into an integer, coercions happen
+#lets look at the different manifestations of the variable
+year_meanifestations <- rki_data %>% group_by(Zeitraum_Name) %>% summarise()
+#some observation appear to have been collected over two years (e.g. 2024/25)
+#this does not allign with ideal tidy data, but I don't see a practical alternative
+
+
+
 # Convert from dbl to int where reasonable
 rki_data <- rki_data %>%
   mutate(Geschlecht_ID = as.integer(Geschlecht_ID)) %>%
@@ -116,3 +124,22 @@ weighted_average <- function(value, sample_size){
 }
 #function was corrected, tested on examplary vectors and stress tested
 
+#graphic for proposal: visualization of depressive symptoms among different 
+#educations levels for all genders in 2023
+bild_dep_23 <- bildung_symptom %>%
+  filter(Zeitraum_Name == "2023") %>%
+  filter(Geschlecht_Name == "Gesamt") %>%
+  select(Wert, Bildung_Casmin_Name)
+
+ggplot(data = bild_dep_23,
+       mapping = aes(
+       x = Bildung_Casmin_Name,
+       y = Wert)
+       ) +
+  geom_col() +
+  labs(
+    title = "prevalence of depressive symptoms among different educational levels",
+    subtitle = "in Germany in the year 2023",
+    x = ("Casmin education level"),
+    y = ("prevalence of depressive symptoms")
+  )
