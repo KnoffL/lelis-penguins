@@ -82,6 +82,18 @@ rki_data <- rki_data %>%
 # Get and view relevant rows for first research question
 rki_data_1 <- rki_data %>%
   filter(Indikator_ID == 2040202 | Indikator_ID == 1010301) %>% # Get depression and social support rows
-  filter(Standardisierung_ID == 3) # Get age-adjusted data
+  filter(Standardisierung_ID == 3) %>% # Get age-adjusted data
+  filter(Bildung_Casmin_ID == 0) # Get data across education levels
 
+View(rki_data_1)
+
+# Transform data so that there is only one row per subgroup
+depression_data <- rki_data_1 %>%
+  filter(Indikator_ID == 2040202)
+
+socialsupport_data <- rki_data_1 %>%
+  filter(Indikator_ID == 1010301)
+
+rki_data_1 <- depression_data %>%
+  inner_join(socialsupport_data, by = c("Zeitraum_Name", "Geschlecht_ID", "Alter_ID", "Region_Name"), suffix = c("_depression", "_socialsupport"))
 View(rki_data_1)
