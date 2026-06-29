@@ -166,7 +166,62 @@ ggplot(data = dep_time,
        x = "years",
        y = "depressive symptoms")
 
+#leo analysis: second research question
 
+#point estimators: aggregated values of depressive symptoms for each year and 
+#education level with the aggregated sample sizes
+bildung_symptom %>%
+  group_by(Zeitraum_Name, Bildung_Casmin_Name) %>%
+  summarize(Wert = weighted_average(Wert, Stichprobe),
+            sample_size = sum(Stichprobe))
 
+#we already have confidence intervals so I will reverse the formula for
+#the confidence interval to caluclate the standard deviation
+
+#calculate standard deviation from lower confidence intervall
+#for the confidence intervall we will assume a t-distribution and thus
+#use 1.96 as t for the reverse 0.95-confidence interval formula
+variance <- function(conf_low, mean_value, sample_size){
+  variance <- ((mean_value - conf_low)/1.96)^2 * sample_size
+  return(variance)
+}
+#the function appears to work
+
+#now we will add a column with the variances for every observation
+bildung_symptom <- bildung_symptom %>%
+  mutate(Varianz = variance(Unteres_Konfidenzintervall, Wert, Stichprobe))
+
+#this is aggregated values from before plus the weighted mean variances for
+#every year
+aggreg <- bildung_symptom %>%
+  group_by(Zeitraum_Name, Bildung_Casmin_Name) %>%
+  summarize(Wert = weighted_average(Wert, Stichprobe),
+            sample_size = sum(Stichprobe),
+            variance = weighted_average(Varianz, Stichprobe)
+            )
+
+#now we can calculate the confidence intervals for every yearly value
+#so we need a function to calculate confidence intervals
+#for the confidence intervall we will assume a t-distribution and thus
+#use 1.98 as t for a 0.95-confidence
+#function for lower confidence interval
+conf_low <- function(value, variance, n){
+  conf <-  value - 1.98 * sqrt(variance/n)
+  return(conf)
+}
+
+#function for upper confidence interval
+conf_up <- function(value, variance, n){
+  conf <- value + 1.98 * sqrt(variance/n)
+  return(conf)
+}
+#functions appear to work (yay!)
+
+# we will add the confidence intervals to our aggergated tibble
+aggreg <- aggreg %>% 
+  mutate(low_confint = conf_low(Wert, variance, sample_size)) %>%
+  mutate(up_confint = conf_up(Wert, variance, sample_size))
+
+#we can see that the intervals never overlap except once!
 
 
