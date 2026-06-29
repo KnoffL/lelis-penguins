@@ -211,7 +211,9 @@ unique(df$Zeitraum_Name)
 
 -Bildung_Casmin_Name is not available across all indicators so we might not be able to use that as a control variable depending on the analysis.
 
--Sample size is really small for some indicators. We will have to keep in mind to check the sample size for relevant indicators and calculate power.
+-Sample size is really small for some indicators. We will have to keep in mind to check the sample size for relevant indicators and calculate power
+
+-the variable Zeitraum_Name appears to contain some observations with two years (e.g. 2024/25) —\> it appears that no observation relevant to our analysis contains this, so we will leave the variable as is
 
 Solution: (adressed in the individual bullet points)
 
@@ -285,7 +287,25 @@ Uncertainties:
 
 Variables:
 
+- Indikator_ID (ID = `2040202`)
+
+- Casmin_Bildung_Name (education level: high, medium, low or general population)
+
+- Wert (the value of depressive symptoms measured in a population chunk)
+
+- Zeitraum_Name (the year)
+
+- Stichprobe (the sample size of each observation)
+
 Analytical approach:
+
+- calculate point estimators for the prevalence of depressive symptoms of each education level group for each year (so that we can confidently use an unpaired-test)
+
+- calculate confidence intervalls for each point and see whether they overlap
+
+- Calculate point guessers for depressive symptoms of the general population for each year, Calculate the differences between the high education group and general education group for each year–\> did the difference decline over the years?
+
+- Maybe calculate the correlation between a socio-economic indicator and depressive symptoms: if the effect is smaller than the one for education then we can estimate a minimum of the education-depression-correlation that can not be explained by socio-economic factors
 
 Cleaning / transformation steps needed:
 
