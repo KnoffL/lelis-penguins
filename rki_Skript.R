@@ -97,3 +97,9 @@ socialsupport_data <- rki_data_1 %>%
 rki_data_1 <- depression_data %>%
   inner_join(socialsupport_data, by = c("Zeitraum_Name", "Geschlecht_ID", "Alter_ID", "Region_Name"), suffix = c("_depression", "_socialsupport"))
 View(rki_data_1)
+
+# Check if Unsicherheit is ever not zero
+rki_data_1_Unsicherheit_low <- rki_data_1 %>%
+  filter(Unsicherheit > 0)
+
+View(rki_data_1_Unsicherheit_low)
