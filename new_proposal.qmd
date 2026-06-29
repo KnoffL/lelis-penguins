@@ -249,7 +249,7 @@ Analytical approach:
 
 - calculate confidence intervalls for each point and see whether they overlap
 
-- Calculate point guessers for depressive symptoms of the general population for each year, Calculate the differences between the high education group and general education group for each year and try to fit a linear regression model –\> did the difference decline over the years?
+- Calculate point guessers for depressive symptoms of the general population for each year, Calculate the differences between the high education group and general education group for each year–\> did the difference decline over the years?
 
 - Maybe calculate the correlation between a socio-economic indicator and depressive symptoms: if the effect is smaller than the one for education then we can estimate a minimum of the education-depression-correlation that can not be explained by socio-economic factors
 
