@@ -99,7 +99,7 @@ rki_data_1 <- depression_data %>%
 View(rki_data_1)
 
 rki_data_1 <- rki_data_1 %>%
-  mutate(subgroup_name = paste(Geschlecht_Name_depression, Alter_Name_depression, Region_Name), .keep = "unused")
+  mutate(subgroup_name = paste(Geschlecht_Name_depression, Alter_Name_depression, Region_Name_depression), .keep = "unused")
 
 # Check if Unsicherheit is ever not zero
 rki_data_1_Unsicherheit_low <- rki_data_1 %>%
@@ -114,3 +114,84 @@ View(rki_data_1_Unsicherheit_low)
 # weniger als ⅔ des Schätzers beträgt (Variationskoeffizient ≤ 16,6 %).
 # Aufgrund der Unsicherheit sollten diese Werte mit Vorsicht interpretiert werden.'
 # We will move on with our analyses for now but will keep it in mind.
+
+### Check sample size for depression samples
+# Check sample sizes for subgroups for regional analyses
+rki_data_1_region_sample_size <- rki_data_1 %>%
+  filter(Region_ID != 0)
+ggplot(rki_data_1_region_sample_size, aes(x = Stichprobe_depression)) +
+  geom_histogram(bins = 30) +
+  labs(title = "Distribution of Sample Sizes for Depression in Regional Samples",
+       x = "Sample Size",
+       y = "Count")
+
+# Check sample sizes for subgroups for gender analyses for all ages
+rki_data_1_gender_sample_size <- rki_data_1 %>%
+  filter(Geschlecht_ID != 0 & Alter_ID == '00+')
+ggplot(rki_data_1_gender_sample_size, aes(x = Stichprobe_depression, fill = factor(Geschlecht_ID))) +
+  geom_histogram(bins = 30, position = "dodge") +
+  scale_fill_manual(values = c("1" = "purple", "2" = "yellow"),
+                    labels = c("1" = "Women", "2" = "Men")) +
+  labs(title = "Distribution of Sample Sizes for Depression in Gender Samples",
+       x = "Sample Size",
+       y = "Count",
+       fill = "Gender")
+
+# Check sample sizes for subgroups for gender analyses in age subgroups
+rki_data_1_gender_age_sample_size <- rki_data_1 %>%
+  filter(Geschlecht_ID != 0 & Alter_ID != '00+')
+ggplot(rki_data_1_gender_age_sample_size, aes(x = Stichprobe_depression, fill = factor(Geschlecht_ID))) +
+  geom_histogram(bins = 30, position = "dodge") +
+  scale_fill_manual(values = c("1" = "purple", "2" = "yellow"),
+                    labels = c("1" = "Women", "2" = "Men")) +
+  labs(title = "Distribution of Sample Sizes for Depression in Gender Samples",
+       x = "Sample Size",
+       y = "Count",
+       fill = "Gender")
+# Sample sizes vary a lot but (assessed by looking at the plots) not systemetically between men and women
+
+# Check sample sizes for subgroups for age analyses
+rki_data_1_age_sample_size <- rki_data_1 %>%
+  filter(Alter_ID != '00+' & Geschlecht_ID == 0)
+ggplot(rki_data_1_age_sample_size, aes(x = Stichprobe_depression)) +
+  geom_histogram(bins = 30) +
+  labs(title = "Distribution of Sample Sizes for Depression in Age Samples",
+       x = "Sample Size",
+       y = "Count")
+
+### Check sample size for social support samples
+# Check sample sizes for subgroups for regional analyses
+ggplot(rki_data_1_region_sample_size, aes(x = Stichprobe_socialsupport)) +
+  geom_histogram(bins = 30) +
+  labs(title = "Distribution of Sample Sizes for Social Support in Regional Samples",
+       x = "Sample Size",
+       y = "Count")
+
+# Check sample sizes for subgroups for gender analyses for all ages
+ggplot(rki_data_1_gender_sample_size, aes(x = Stichprobe_socialsupport, fill = factor(Geschlecht_ID))) +
+  geom_histogram(bins = 30, position = "dodge") +
+  scale_fill_manual(values = c("1" = "purple", "2" = "yellow"),
+                    labels = c("1" = "Women", "2" = "Men")) +
+  labs(title = "Distribution of Sample Sizes for Social Support in Gender Samples",
+       x = "Sample Size",
+       y = "Count",
+       fill = "Gender")
+
+# Check sample sizes for subgroups for gender analyses in age subgroups
+ggplot(rki_data_1_gender_age_sample_size, aes(x = Stichprobe_socialsupport, fill = factor(Geschlecht_ID))) +
+  geom_histogram(bins = 30, position = "dodge") +
+  scale_fill_manual(values = c("1" = "purple", "2" = "yellow"),
+                    labels = c("1" = "Women", "2" = "Men")) +
+  labs(title = "Distribution of Sample Sizes for Social Support in Gender Samples",
+       x = "Sample Size",
+       y = "Count",
+       fill = "Gender")
+# Sample sizes vary a lot but (assessed by looking at the plots) not systemetically between men and women
+
+# Check sample sizes for subgroups for age analyses
+ggplot(rki_data_1_age_sample_size, aes(x = Stichprobe_socialsupport)) +
+  geom_histogram(bins = 30) +
+  labs(title = "Distribution of Sample Sizes for Social Support in Age Samples",
+       x = "Sample Size",
+       y = "Count")
+# Sample sizes vary a lot for all inspected combinations, that is important to keep in mind
